@@ -1,5 +1,4 @@
-<!-- src/views/SkillsView.vue -->
-
+<!-- src/views/Competence1View.vue -->
 <template>
   <section id="skills" class="section" data-aos="fade-up">
     <h2>Skills</h2>
@@ -9,7 +8,7 @@
 
 <script>
 export default {
-  name: 'SkillsView'
+  name: 'Competence1View'
 }
 </script>
 

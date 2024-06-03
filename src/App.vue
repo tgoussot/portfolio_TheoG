@@ -5,8 +5,8 @@
       <v-spacer></v-spacer>
       <v-btn text @click="scrollTo('about')">Qui suis-je ?</v-btn>
       <v-btn text @click="scrollTo('projects')">Mon projet de stage</v-btn>
-      <v-btn text @click="scrollTo('skills')">Compétences</v-btn>
-      <v-btn text @click="scrollTo('contact')">Contact</v-btn>
+      <v-btn text @click="scrollTo('skills')">Compétence 1</v-btn>
+      <v-btn text @click="scrollTo('contact')">Compétence 5</v-btn>
     </v-app-bar>
 
     <v-main @scroll="startObserving">
@@ -22,12 +22,12 @@
       </div>
       <div class="page" id="skills" ref="skills">
         <div class="page-content">
-          <SkillsView />
+          <Competence1View />
         </div>
       </div>
       <div class="page" id="contact" ref="contact">
         <div class="page-content">
-          <ContactView />
+          <Competence5View />
         </div>
       </div>
       <div ref="bottomRef" style="height: 1px; width: 100%;"></div>
@@ -41,17 +41,17 @@
 import Footer from '@/components/FooterComponent.vue';
 import AboutView from '@/views/AboutView.vue';
 import ProjectsView from '@/views/ProjectView.vue';
-import SkillsView from '@/views/SkillsView.vue';
-import ContactView from '@/views/ContactView.vue';
+import Competence1View from '@/views/Competence1View.vue';
+import Competence5View from "@/views/ContactView.vue";
 
 export default {
   name: 'App',
   components: {
+    Competence5View,
+    Competence1View,
     Footer,
     AboutView,
-    ProjectsView,
-    SkillsView,
-    ContactView
+    ProjectsView
   },
   data() {
     return {
@@ -65,8 +65,23 @@ export default {
     scrollTo(sectionId) {
       const section = document.getElementById(sectionId);
       if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
+        const offset = 130; // Adjusted offset value to match the height of your navbar
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = section.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
       }
+    },
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     },
     createObserver(section) {
       const observer = new IntersectionObserver(
@@ -113,6 +128,7 @@ export default {
   },
   mounted() {
     this.observeBottom();
+    this.scrollToTop();
   },
   beforeDestroy() {
     Object.values(this.sectionObservers).forEach(observer => observer.disconnect());
@@ -127,7 +143,8 @@ export default {
 @import '~vuetify/dist/vuetify.min.css';
 
 .page {
-  height: 100vh;
+  /* height: 100vh; */ /* Commenter ou supprimer */
+  min-height: 100vh; /* Utiliser min-height pour permettre l'expansion */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -145,7 +162,7 @@ export default {
 .page-content {
   backface-visibility: hidden;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */ /* Commenter ou supprimer */
   display: flex;
   align-items: center;
   justify-content: center;
