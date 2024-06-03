@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'ContactView'
+  name: 'Competence5View'
 }
 </script>
 
