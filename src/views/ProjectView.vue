@@ -76,7 +76,7 @@
           <div class="text-container">
             <p>
           <span class="highlight bold">
-            Ce projet permet de moderniser une application utilisée par plus de 500 technicien de l’AIS dans la DR AFC, tout en assurant sa maintenabilité future et sa conformité aux nouvelles exigences.
+            Ce projet permet de moderniser une application utilisée au quotidien par 80 techniciens de l’AIS dans la DR AFC, tout en assurant sa maintenabilité future et sa conformité aux nouvelles exigences.
           </span>
             </p>
           </div>
